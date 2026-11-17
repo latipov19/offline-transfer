@@ -9,6 +9,7 @@ import 'models/transfer_item.dart';
 import 'models/device_info_model.dart';
 import 'repositories/transfer_repository.dart';
 import 'screens/home_screen.dart';
+import 'services/nearby_service.dart';
 import 'services/storage_service.dart';
 import 'theme/app_theme.dart';
 
@@ -63,9 +64,14 @@ void main() async {
   runApp(const OfflineTransferApp());
 }
 
-class OfflineTransferApp extends StatelessWidget {
+class OfflineTransferApp extends StatefulWidget {
   const OfflineTransferApp({super.key});
 
+  @override
+  State<OfflineTransferApp> createState() => _OfflineTransferAppState();
+}
+
+class _OfflineTransferAppState extends State<OfflineTransferApp> {
   ThemeMode _resolveThemeMode() {
     final saved = StorageService.instance.getSetting(AppConstants.keyThemeMode);
     switch (saved) {
@@ -76,6 +82,13 @@ class OfflineTransferApp extends StatelessWidget {
       default:
         return ThemeMode.dark;
     }
+  }
+
+  @override
+  void dispose() {
+    // Clean up NearbyService streams when the app is fully closed
+    NearbyService.instance.dispose();
+    super.dispose();
   }
 
   @override
