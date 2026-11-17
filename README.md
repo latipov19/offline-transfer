@@ -1,119 +1,119 @@
 # 📡 Offline Transfer
 
-> **No internet. No cloud. No server.** — Peer-to-peer fayl uzatish ilovasi.
+> **No internet. No cloud. No server.** — Peer-to-peer file transfer app built with Flutter.
 
-Offline Transfer — Wi-Fi Direct va Bluetooth orqali qurilmalar o'rtasida fayllarni internetga ulanmasdan yuborish va qabul qilish uchun mo'ljallangan Flutter ilovasi.
-
----
-
-## ✨ Xususiyatlar
-
-- 🔗 **Peer-to-Peer ulanish** — Wi-Fi Direct / Nearby Connections orqali
-- 📷 **QR kod bilan juftlash** — Tez va oson ulanish
-- 🔐 **AES-256-GCM shifrlash** — Xavfsiz fayl uzatish
-- ✅ **SHA-256 tekshiruv** — Fayl yaxlitligini kafolatlaydi
-- 📂 **Barcha fayl turlari** — Rasm, video, hujjat, arxiv va boshqalar
-- 📜 **Tarix** — O'tkazilgan fayllar tarixi (Hive DB)
-- 🌙 **Dark / Light tema** — Avtomatik va qo'lda sozlash
-- ⏸️ **Resume qo'llab-quvvatlash** — Uzilgan uzatishni davom ettirish
+Offline Transfer lets you send and receive files between devices over Wi-Fi Direct and Bluetooth — completely offline, with no servers or cloud storage involved.
 
 ---
 
-## 🛠️ Texnologiyalar
+## ✨ Features
 
-| Texnologiya | Maqsad |
-|-------------|--------|
+- 🔗 **Peer-to-Peer Connection** — Wi-Fi Direct via Nearby Connections API
+- 📷 **QR Code Pairing** — Fast and easy device discovery
+- 🔐 **AES-256-GCM Encryption** — Every file is encrypted in transit
+- ✅ **SHA-256 Integrity Check** — Verify files are transferred without corruption
+- 📂 **All File Types** — Images, videos, documents, archives, and more
+- 📜 **Transfer History** — Persistent history stored locally with Hive
+- 🌙 **Dark / Light Theme** — Manual and system-aware theming
+- ⏸️ **Resume Support** — Continue interrupted transfers
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
 | **Flutter 3.x** | Cross-platform UI framework |
 | `nearby_connections` | Wi-Fi Direct / Bluetooth P2P |
-| `qr_flutter` + `mobile_scanner` | QR kod yaratish va skanerlash |
-| `hive` + `hive_flutter` | Local ma'lumotlar bazasi |
-| `encrypt` (AES-256-GCM) | Fayl shifrlash |
-| `crypto` (SHA-256) | Fayl xesh tekshiruvi |
-| `file_picker` | Fayl tanlash |
-| `permission_handler` | Ruxsatlarni boshqarish |
+| `qr_flutter` + `mobile_scanner` | QR code generation & scanning |
+| `hive` + `hive_flutter` | Local database for history & settings |
+| `encrypt` (AES-256-GCM) | File encryption |
+| `crypto` (SHA-256) | File integrity verification |
+| `file_picker` | File selection |
+| `permission_handler` | Runtime permissions management |
 
 ---
 
-## 📱 Platformalar
+## 📱 Platform Support
 
-| Platform | Holati |
+| Platform | Status |
 |----------|--------|
-| Android | ✅ Qo'llab-quvvatlanadi |
-| iOS | 🔄 Ishlanmoqda |
-| Web | ⚠️ Cheklangan (Nearby API yo'q) |
+| Android | ✅ Supported |
+| iOS | 🔄 In progress |
+| Web | ⚠️ Limited (Nearby API unavailable) |
 
 ---
 
-## 🚀 Ishga tushirish
+## 🚀 Getting Started
 
-### Talablar
+### Prerequisites
 - Flutter SDK `^3.13.4`
 - Dart SDK `^3.13.4`
-- Android Studio yoki VS Code
+- Android Studio or VS Code
 
-### O'rnatish
+### Installation
 
 ```bash
-# Reponi clone qiling
+# Clone the repository
 git clone https://github.com/latipov19/offline-transfer.git
 cd offline-transfer
 
-# Bog'liqliklarni o'rnating
+# Install dependencies
 flutter pub get
 
-# Hive kodlarini yarating
+# Generate Hive adapters
 dart run build_runner build
 
-# Ilovani ishga tushiring
+# Run the app
 flutter run
 ```
 
 ---
 
-## 📁 Loyiha tuzilmasi
+## 📁 Project Structure
 
 ```
 lib/
 ├── core/
-│   ├── constants/     # App konstantalari
-│   ├── errors/        # Xatoliklar
-│   ├── permissions/   # Ruxsatlar
-│   └── utils/         # Yordamchi funksiyalar
-├── models/            # Ma'lumot modellari (Hive)
-├── repositories/      # Ma'lumotlar ombori
-├── screens/           # UI ekranlar
+│   ├── constants/     # App-wide constants
+│   ├── errors/        # Custom exceptions
+│   ├── permissions/   # Permission handling
+│   └── utils/         # Utility functions
+├── models/            # Data models (Hive adapters)
+├── repositories/      # Data access layer
+├── screens/           # UI screens
 │   ├── home_screen.dart
 │   ├── send_screen.dart
 │   ├── receive_screen.dart
 │   ├── transfer_screen.dart
 │   ├── history_screen.dart
 │   └── settings_screen.dart
-├── services/          # Biznes logika
+├── services/          # Business logic
 │   ├── nearby_service.dart
 │   ├── transfer_service.dart
 │   ├── encryption_service.dart
 │   └── storage_service.dart
-├── theme/             # Tema sozlamalari
-├── widgets/           # Umumiy widget'lar
+├── theme/             # App theming
+├── widgets/           # Reusable widgets
 └── main.dart
 ```
 
 ---
 
-## 🔐 Xavfsizlik
+## 🔐 Security
 
-- Barcha fayllar **AES-256-GCM** bilan shifrlanadi
-- Har bir uzatish uchun **SHA-256** xesh tekshiruvi amalga oshiriladi
-- Internet ulanishi **talab qilinmaydi** — ma'lumotlar bulutga chiqmaydi
+- All files are encrypted using **AES-256-GCM** before transfer
+- **SHA-256** checksum validation on every received file
+- No internet connection required — your data never leaves your local network
 
 ---
 
-## 👨‍💻 Muallif
+## 👨‍💻 Author
 
 **Latipov** — [@latipov19](https://github.com/latipov19)
 
 ---
 
-## 📄 Litsenziya
+## 📄 License
 
-Bu loyiha [MIT License](LICENSE) ostida tarqatiladi.
+This project is licensed under the [MIT License](LICENSE).
